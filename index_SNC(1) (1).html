@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNC FASHION — Old Money Collection</title>
+<style>
+:root{
+  --black:#090909;--black2:#111111;--gold:#c9a35a;--gold2:#e4c17d;
+  --cream:#f7f5f0;--white:#fff;--muted:#666;--line:#e5e1d8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#171717;background:var(--cream)}
+button,a{font:inherit}
+button{cursor:pointer}
+.topbar{height:36px;background:#050505;color:#eee;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:1.1px;position:relative}
+.topbar strong{color:var(--gold2);font-weight:500}
+.topbar .arrow{position:absolute;font-size:23px;color:#d9bd7a}
+.topbar .left{left:42px}.topbar .right{right:42px}
+.nav{height:78px;background:#0d0d0d;color:#fff;display:flex;align-items:center;padding:0 52px;gap:38px;border-bottom:1px solid #222;position:sticky;top:0;z-index:20}
+.logo{min-width:120px;text-align:left;line-height:.78}
+.logo .sns{font-family:Georgia,serif;font-size:47px;color:#d4ad62;letter-spacing:-3px}
+.logo .fashion{font-family:Georgia,serif;color:#d4ad62;font-size:17px;letter-spacing:.2px;margin-left:8px}
+.navlinks{display:flex;align-items:center;gap:30px;flex:1}
+.navlinks button{border:0;background:none;color:#f6f6f6;font-size:13px;letter-spacing:.25px;padding:28px 0;position:relative}
+.navlinks button:hover,.navlinks button.active{color:#e0bb70}
+.navlinks button.active:after{content:"";position:absolute;bottom:13px;left:0;right:0;height:2px;background:#c9a35a}
+.icons{display:flex;gap:19px;align-items:center}
+.iconbtn{border:0;background:none;color:#fff;font-size:24px;position:relative;padding:4px}
+.badge{position:absolute;top:-2px;right:-5px;background:#c9a35a;color:#111;width:15px;height:15px;border-radius:50%;font-size:9px;display:grid;place-items:center}
+.hero{height:555px;position:relative;overflow:hidden;background:#101010}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,4,4,.88) 0%,rgba(4,4,4,.68) 33%,rgba(4,4,4,.18) 66%,rgba(4,4,4,.05) 100%);z-index:1}
+.heroimg{position:absolute;right:0;top:0;width:68%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(.82)}
+.hero-content{position:relative;z-index:2;color:#fff;width:52%;padding:93px 0 0 72px}
+.kicker{color:#d8b977;font-size:16px;letter-spacing:4px;margin-bottom:25px}
+.hero h1{font-family:Georgia,serif;font-weight:400;font-size:74px;line-height:.98;margin:0;color:#fff}
+.hero h1 span{color:#d9b66f}
+.subtitle{font-family:Georgia,serif;font-style:italic;font-size:27px;margin:23px 0 28px}
+.rule{height:2px;width:70px;background:#d1aa63;margin-bottom:30px}
+.hero p{font-family:Georgia,serif;font-size:18px;line-height:1.55;color:#eee;max-width:510px}
+.actions{display:flex;gap:28px;margin-top:30px}
+.primary,.secondary{padding:14px 28px;border-radius:2px;letter-spacing:.5px;font-size:13px}
+.primary{background:#dfbd7b;color:#111;border:1px solid #dfbd7b}
+.secondary{background:transparent;color:#fff;border:1px solid #c8a766}
+.hero-side{position:absolute;right:40px;top:100px;z-index:2;color:#fff;text-align:center;width:120px}
+.hero-side .feature{padding:15px 0;border-bottom:1px solid rgba(255,255,255,.25)}
+.hero-side .symbol{font-size:29px;color:#d4ad62}
+.hero-side b{display:block;font-size:13px;margin-top:7px}
+.hero-side small{font-size:10px;letter-spacing:.5px;color:#ddd}
+.servicebar{background:#f7f5f0;padding:26px 52px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr)}
+.service{display:flex;align-items:center;gap:14px;padding:0 22px;border-right:1px solid #ddd}
+.service:last-child{border:0}.service .ico{font-size:29px;color:#a37e3c}.service b{display:block;font-size:12px}.service span{font-size:11px;color:#777;display:block;margin-top:6px}
+.section{padding:27px 52px}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px}
+.section-head h2{font-size:24px;margin:0;letter-spacing:.2px}
+.section-head a{color:#222;text-decoration:none;font-size:13px}.section-head a:hover{color:#b08a48}
+.categories{display:grid;grid-template-columns:repeat(7,1fr);gap:11px}
+.cat{background:#fff;border:1px solid #e7e2d8;box-shadow:0 1px 3px #00000008;overflow:hidden}
+.catimg{height:195px;background-size:cover;background-position:center;position:relative}
+.catimg:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.1),transparent 60%)}
+.catbody{text-align:center;padding:12px 5px 14px}.catbody b{font-size:13px}.catbody a{display:block;color:#222;text-decoration:none;font-size:11px;margin-top:9px}.catbody a:after{content:" ›";color:#b08a48}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:#fff;border:1px solid #e7e2d8;position:relative;overflow:hidden}
+.cardimg{height:350px;background-size:cover;background-position:center;position:relative}
+.cardtag{position:absolute;left:10px;top:10px;background:#111;color:#fff;padding:6px 9px;font-size:10px;letter-spacing:1px}
+.heart{position:absolute;right:10px;top:10px;background:#fff;border:0;width:32px;height:32px;border-radius:50%;font-size:17px}
+.cardbody{padding:14px}.cardbody h3{font-family:Georgia,serif;font-size:18px;font-weight:500;margin:0 0 8px}.meta{font-size:11px;color:#777}.price{font-size:15px;font-weight:700;margin-top:10px}.add{width:100%;margin-top:12px;border:1px solid #222;background:#111;color:#fff;padding:11px;text-transform:uppercase;letter-spacing:1px;font-size:11px}
+.banner{margin:8px 52px 36px;min-height:240px;background:#121212;color:#fff;display:flex;align-items:center;padding:35px 55px;position:relative;overflow:hidden}
+.banner:after{content:"SNC";font-family:Georgia,serif;font-size:260px;color:#ffffff05;position:absolute;right:40px;top:-35px}
+.banner-content{position:relative;z-index:2}.banner small{color:#d6b26d;letter-spacing:3px}.banner h2{font-family:Georgia,serif;font-size:42px;font-weight:400;margin:12px 0}.banner p{color:#ccc}
+footer{background:#0c0c0c;color:#fff;padding:45px 52px 25px}.footergrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}.footerlogo{font-family:Georgia,serif;color:#d3ad67;font-size:42px}.footer p,.footer li{color:#aaa;font-size:12px;line-height:1.8}.footer ul{list-style:none;padding:0}.footer h4{font-size:12px;letter-spacing:1px}.copy{border-top:1px solid #2a2a2a;margin-top:30px;padding-top:18px;color:#777;font-size:11px}
+.drawer{position:fixed;right:-420px;top:0;width:400px;height:100%;background:#fff;z-index:50;box-shadow:-5px 0 30px #0002;transition:.3s;padding:24px}.drawer.open{right:0}.drawer h2{font-family:Georgia,serif}.close{float:right;border:0;background:none;font-size:24px}.cartitem{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid #ddd}.cartitem img{width:70px;height:80px;object-fit:cover}.cartitem b{font-size:13px}.cartitem small{color:#777}.total{font-size:18px;font-weight:700;margin:20px 0}.checkout{width:100%;padding:14px;background:#111;color:#fff;border:0}
+@media(max-width:1150px){.nav{padding:0 25px;gap:20px}.navlinks{gap:17px}.categories{grid-template-columns:repeat(4,1fr)}.hero-content{width:65%}.hero-side{display:none}}
+@media(max-width:800px){.topbar{font-size:9px}.nav{height:auto;min-height:68px;padding:10px 16px;flex-wrap:wrap}.logo{min-width:90px}.logo .sns{font-size:36px}.logo .fashion{font-size:13px}.navlinks{order:3;overflow:auto;width:100%;flex-basis:100%;gap:20px}.navlinks button{padding:10px 0}.hero{height:590px}.heroimg{width:100%;opacity:.62}.hero-content{width:100%;padding:55px 28px}.hero h1{font-size:52px}.hero p{font-size:16px}.servicebar{grid-template-columns:1fr 1fr;padding:14px}.service{padding:12px;border-bottom:1px solid #ddd}.section{padding:25px 16px}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr)}.cardimg{height:250px}.banner{margin:8px 16px 30px;padding:30px}.footergrid{grid-template-columns:1fr 1fr}.drawer{width:92%}}
+@media(max-width:500px){.products{grid-template-columns:1fr 1fr}.catimg{height:145px}.hero h1{font-size:43px}.subtitle{font-size:21px}.actions{gap:10px}.primary,.secondary{padding:12px 15px}.footergrid{grid-template-columns:1fr}.servicebar{grid-template-columns:1fr}.hero-content{padding-top:45px}}
+
+/* High-fidelity styling based on the supplied reference screenshot */
+body{background:#f8f7f3;color:#141414}
+.topbar{height:36px;font-size:13px;letter-spacing:.65px;background:#050505}
+.nav{height:80px;padding:0 50px;gap:35px;background:#090909}
+.logo{min-width:125px}
+.logo .sns{font-size:49px;color:#d8ae58}
+.logo .fashion{font-size:17px;color:#d8ae58}
+.navlinks{gap:29px}
+.navlinks button{font-size:13px}
+.icons{gap:17px}
+.hero{height:556px;background:#111}
+.heroimg{width:67%;height:100%;object-fit:cover;object-position:center;filter:none}
+.hero:before{background:linear-gradient(90deg,rgba(3,3,3,.91) 0%,rgba(3,3,3,.74) 34%,rgba(3,3,3,.18) 70%,rgba(3,3,3,.04) 100%)}
+.hero-content{padding:95px 0 0 72px;width:55%}
+.kicker{font-size:16px;letter-spacing:4px;margin-bottom:25px}
+.hero h1{font-size:74px}
+.subtitle{font-size:27px}
+.hero p{font-size:18px}
+.actions{gap:29px}
+.primary{background:#dfbd7b;border-color:#dfbd7b}
+.servicebar{padding:25px 52px;grid-template-columns:repeat(5,1fr);background:#faf9f5}
+.service{padding:0 22px}
+.section{padding:25px 52px}
+.section-head{margin-bottom:21px}
+.section-head h2{font-size:24px}
+.categories{gap:11px}
+.catimg{height:190px}
+.catbody{padding:12px 5px 15px}
+.cat{box-shadow:0 1px 3px rgba(0,0,0,.07)}
+@media(max-width:1150px){.nav{padding:0 25px}.hero-content{width:65%}}
+@media(max-width:800px){.heroimg{width:100%;opacity:.62}.hero-content{width:100%;padding:55px 28px}}
+
+
+/* =========================================================
+   SNC FASHION — Desktop / Tablet / Mobile Responsive Upgrade
+   ========================================================= */
+
+/* Desktop */
+.menu-toggle{display:none}
+@media (min-width:1201px){
+  .nav{padding:0 52px}
+  .navlinks{gap:28px}
+  .hero-content{max-width:760px}
+  .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .categories{grid-template-columns:repeat(7,minmax(0,1fr))}
+}
+
+/* Small desktop / large tablet */
+@media (max-width:1200px){
+  .nav{padding:0 28px;gap:20px}
+  .navlinks{gap:17px}
+  .navlinks button{font-size:12px}
+  .hero-content{width:62%;padding-left:45px}
+  .hero h1{font-size:62px}
+  .hero-side{right:20px;width:105px}
+  .categories{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .products{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .servicebar{grid-template-columns:repeat(3,1fr);row-gap:16px}
+  .service:nth-child(3){border-right:0}
+}
+
+/* Tablet */
+@media (min-width:601px) and (max-width:900px){
+  .topbar{height:34px;font-size:10px}
+  .topbar .left{left:18px}.topbar .right{right:18px}
+  .nav{height:auto;min-height:72px;padding:10px 22px;gap:16px;flex-wrap:wrap}
+  .logo{min-width:105px}
+  .logo .sns{font-size:41px}
+  .logo .fashion{font-size:14px}
+  .navlinks{order:4;flex-basis:100%;width:100%;overflow-x:auto;gap:25px;padding:2px 0 4px;scrollbar-width:none}
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks button{white-space:nowrap;padding:9px 0;font-size:12px}
+  .icons{margin-left:auto}
+  .hero{height:500px}
+  .heroimg{width:72%;object-position:center}
+  .hero-content{width:66%;padding:70px 0 0 38px}
+  .hero h1{font-size:52px}
+  .subtitle{font-size:23px}
+  .hero p{font-size:16px}
+  .hero-side{display:none}
+  .servicebar{grid-template-columns:repeat(2,1fr);padding:18px 24px}
+  .service{padding:12px 16px}
+  .service:nth-child(2),.service:nth-child(4){border-right:0}
+  .section{padding:25px 24px}
+  .categories{grid-template-columns:repeat(4,1fr);gap:10px}
+  .catimg{height:170px}
+  .products{grid-template-columns:repeat(2,1fr);gap:14px}
+  .cardimg{height:300px}
+  .banner{margin:8px 24px 30px}
+  footer{padding-left:24px;padding-right:24px}
+}
+
+/* Mobile */
+@media (max-width:600px){
+  .topbar{height:34px;font-size:8.5px;letter-spacing:.35px;padding:0 32px;text-align:center;white-space:nowrap;overflow:hidden}
+  .topbar .left{left:10px}.topbar .right{right:10px}
+  .nav{height:auto;min-height:68px;padding:9px 14px;gap:10px;flex-wrap:wrap}
+  .logo{min-width:88px}
+  .logo .sns{font-size:35px;letter-spacing:-2px}
+  .logo .fashion{font-size:12px;margin-left:4px}
+  .menu-toggle{display:block;order:2;border:0;background:transparent;color:#fff;font-size:24px;padding:5px;margin-left:auto}
+  .icons{order:3;gap:8px}
+  .iconbtn{font-size:21px;padding:3px}
+  .navlinks{
+    display:none;
+    order:5;
+    flex-basis:100%;
+    width:100%;
+    background:#111;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    padding:4px 8px 8px;
+  }
+  .navlinks.mobile-open{display:flex}
+  .navlinks button{text-align:left;padding:12px 8px;border-bottom:1px solid #252525;font-size:12px}
+  .navlinks button.active:after{display:none}
+  .hero{height:570px}
+  .heroimg{width:100%;height:100%;opacity:.52;object-position:center}
+  .hero:before{background:linear-gradient(90deg,rgba(3,3,3,.88),rgba(3,3,3,.52),rgba(3,3,3,.35))}
+  .hero-content{width:100%;padding:62px 24px 0}
+  .kicker{font-size:11px;letter-spacing:2.4px;margin-bottom:18px}
+  .hero h1{font-size:43px;line-height:1}
+  .subtitle{font-size:21px;margin:18px 0 22px}
+  .hero p{font-size:15px;line-height:1.45;max-width:340px}
+  .actions{gap:9px;margin-top:24px;flex-wrap:wrap}
+  .primary,.secondary{padding:12px 15px;font-size:11px}
+  .hero-side{display:none}
+  .servicebar{grid-template-columns:1fr;padding:8px 14px}
+  .service{padding:12px 8px;border-right:0;border-bottom:1px solid #ddd}
+  .service:last-child{border-bottom:0}
+  .service .ico{font-size:25px}
+  .section{padding:22px 14px}
+  .section-head{align-items:center;margin-bottom:16px}
+  .section-head h2{font-size:19px}
+  .section-head a{font-size:10px}
+  .categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .catimg{height:150px}
+  .catbody{padding:10px 3px 12px}
+  .catbody b{font-size:11px}
+  .catbody a{font-size:9px;margin-top:6px}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .cardimg{height:220px}
+  .cardbody{padding:10px}
+  .cardbody h3{font-size:14px;line-height:1.25}
+  .meta{font-size:9px}
+  .price{font-size:13px;margin-top:7px}
+  .add{padding:9px 5px;font-size:9px;margin-top:9px}
+  .heart{width:28px;height:28px;font-size:15px;right:7px;top:7px}
+  .cardtag{left:7px;top:7px;padding:5px 6px;font-size:8px}
+  .banner{margin:6px 14px 25px;min-height:220px;padding:25px}
+  .banner h2{font-size:30px}
+  .banner p{font-size:12px}
+  .footergrid{grid-template-columns:1fr 1fr;gap:20px}
+  footer{padding:32px 18px 20px}
+  .drawer{width:92%;padding:20px}
+}
+
+/* Very small phones */
+@media (max-width:400px){
+  .hero{height:540px}
+  .hero-content{padding:48px 19px 0}
+  .hero h1{font-size:36px}
+  .subtitle{font-size:19px}
+  .actions{display:grid;grid-template-columns:1fr}
+  .primary,.secondary{width:100%}
+  .categories{gap:7px}
+  .catimg{height:130px}
+  .products{gap:8px}
+  .cardimg{height:195px}
+  .cardbody h3{font-size:12px}
+  .footergrid{grid-template-columns:1fr}
+}
+
+/* Better image presentation across all category cards */
+.catimg{
+  background-size:cover;
+  background-position:center;
+}
+.catimg:after{
+  background:linear-gradient(0deg,rgba(0,0,0,.14),transparent 65%);
+}
+
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="arrow left">‹</span><span><strong>FREE DELIVERY</strong> ALL OVER PAKISTAN & INTERNATIONAL SHIPPING AVAILABLE 🌐</span><span class="arrow right">›</span></div>
+
+<header class="nav">
+  <div class="logo"><div class="sns">SNC</div><div class="fashion">FASHION</div></div>
+  <nav class="navlinks">
+    <button class="active" onclick="scrollToId('home')">HOME</button>
+    <button onclick="scrollToId('shop')">SHOP⌄</button>
+    <button onclick="filter('men')">MEN</button>
+    <button onclick="filter('women')">WOMEN</button>
+    <button onclick="filter('kids')">KIDS</button>
+    <button onclick="filter('bags')">BAGS</button>
+    <button onclick="filter('shoes')">SHOES</button>
+    <button onclick="filter('fragrance')">FRAGRANCE & ATTARS</button>
+    <button onclick="filter('accessories')">ACCESSORIES</button>
+    <button onclick="scrollToId('offers')">OFFERS</button>
+  </nav>
+  <button id="menuToggle" class="menu-toggle" aria-label="Open menu" onclick="toggleMenu()">☰</button>
+<div class="icons">
+    <button class="iconbtn" title="Search" onclick="searchProducts()">⌕</button>
+    <button class="iconbtn" title="Account" onclick="alert('Account section coming with the full backend.')">♙</button>
+    <button class="iconbtn" title="Wishlist" onclick="alert('Wishlist is ready for product cards.')">♡<span class="badge">0</span></button>
+    <button class="iconbtn" title="Cart" onclick="openCart()">♧<span id="cartBadge" class="badge">0</span></button>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <img class="heroimg" src="hero-reference.jpg" alt="SNC FASHION founder">
+  <div class="hero-content">
+    <div class="kicker">CLASS. QUALITY. CHARACTER.</div>
+    <h1><span>SNC</span> FASHION</h1>
+    <div class="subtitle">Old Money. New Standards.</div>
+    <div class="rule"></div>
+    <p>Timeless pieces crafted for the modern gentleman.<br>Premium quality. Refined style.</p>
+    <div class="actions">
+      <button class="primary" onclick="scrollToId('shop')">SHOP COLLECTION　›</button>
+      <button class="secondary" onclick="scrollToId('categories')">EXPLORE MORE</button>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="feature"><div class="symbol">♙</div><b>PREMIUM</b><small>QUALITY</small></div>
+    <div class="feature"><div class="symbol">◇</div><b>TIMELESS</b><small>DESIGN</small></div>
+    <div class="feature"><div class="symbol">♛</div><b>OLD MONEY</b><small>VALUES</small></div>
+  </div>
+</section>
+
+<section class="servicebar">
+  <div class="service"><div class="ico">♧</div><div><b>FREE DELIVERY</b><span>All Over Pakistan</span></div></div>
+  <div class="service"><div class="ico">◎</div><div><b>INTERNATIONAL SHIPPING</b><span>Worldwide Delivery</span></div></div>
+  <div class="service"><div class="ico">♢</div><div><b>SECURE PAYMENT</b><span>100% Secure Checkout</span></div></div>
+  <div class="service"><div class="ico">♧</div><div><b>CUSTOMER SUPPORT</b><span>+92 333 7597852</span></div></div>
+  <div class="service"><div class="ico">↩</div><div><b>EASY RETURNS</b><span>7 Days Return Policy</span></div></div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-head"><h2>SHOP BY CATEGORY</h2><a href="#shop">View All Categories　›</a></div>
+  <div class="categories">
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>MEN</b><a href="#shop" onclick="filter('men')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>WOMEN</b><a href="#shop" onclick="filter('women')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>KIDS</b><a href="#shop" onclick="filter('kids')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>BAGS</b><a href="#shop" onclick="filter('bags')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>SHOES</b><a href="#shop" onclick="filter('shoes')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>FRAGRANCE & ATTARS</b><a href="#shop" onclick="filter('fragrance')">Explore Now</a></div></div>
+    <div class="cat"><div class="catimg" style="background-image:url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=85')"></div><div class="catbody"><b>ACCESSORIES</b><a href="#shop" onclick="filter('accessories')">Explore Now</a></div></div>
+
+</section>
+
+<section class="section" id="shop">
+  <div class="section-head"><div><h2 id="shopTitle">NEW ARRIVALS</h2><div id="productCount" style="font-size:11px;color:#777;margin-top:5px">70 premium pieces</div></div><a href="#" onclick="showAll();return false">View All Products　›</a></div>
+  <div class="products" id="products"></div>
+</section>
+
+<section class="banner" id="offers">
+  <div class="banner-content"><small>THE SNC EDIT</small><h2>Old Money. New Standards.</h2><p>Refined essentials, premium materials and timeless silhouettes.</p><button class="primary" onclick="scrollToId('shop')">SHOP THE COLLECTION</button></div>
+</section>
+</main>
+
+<footer>
+  <div class="footergrid">
+    <div><div class="footerlogo">SNC</div><p>SNC FASHION<br>Old Money. New Standards.<br>Premium clothing, shoes, bags, accessories and fragrances.</p></div>
+    <div><h4>SHOP</h4><ul><li>Men</li><li>Women</li><li>Kids</li><li>Bags</li></ul></div>
+    <div><h4>COLLECTIONS</h4><ul><li>Shoes</li><li>Fragrance & Attars</li><li>Accessories</li><li>Offers</li></ul></div>
+    <div><h4>CONTACT</h4><ul><li>Islamabad, Pakistan</li><li>+92 333 7597852</li><li>chandionajam5@gmail.com</li></ul></div>
+  </div>
+  <div class="copy">© 2026 SNC FASHION. All rights reserved.</div>
+</footer>
+
+<aside class="drawer" id="cart">
+  <button class="close" onclick="closeCart()">×</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <div class="total" id="cartTotal">Total: Rs 0</div>
+  <button class="checkout" onclick="checkout()">PROCEED TO CHECKOUT</button>
+</aside>
+
+<script>
+const products=[
+{name:"SNC Signature Oxford Shirt",cat:"men",price:6500,img:"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85",tag:"BESTSELLER"},
+{name:"SNC Heritage Polo",cat:"men",price:5900,img:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Blazer",cat:"men",price:15900,img:"https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Classic Kurta",cat:"men",price:7200,img:"sns-classic-kurta.png",tag:"NEW"},
+{name:"SNC Tailored Trousers",cat:"men",price:8900,img:"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Premium Knit Sweater",cat:"men",price:9800,img:"https://images.unsplash.com/photo-1610652492500-ded49ceeb378?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Double-Breasted Suit",cat:"men",price:24900,img:"https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Cashmere Cardigan",cat:"men",price:13900,img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Chinos",cat:"men",price:6900,img:"https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Evening Formal Shirt",cat:"men",price:7600,img:"https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Women's Classic Dress",cat:"women",price:12900,img:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Heritage Skirt",cat:"women",price:8500,img:"https://loremflickr.com/900/1100/woman,pleated,skirt,fashion?lock=722"},
+{name:"SNC Classic Trench Coat",cat:"women",price:18900,img:"https://images.unsplash.com/photo-1544957992-20514f595c4c?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Silk Evening Dress",cat:"women",price:15900,img:"https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Linen Co-Ord Set",cat:"women",price:11900,img:"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Pearl Blouse",cat:"women",price:7900,img:"https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Pleated Midi Skirt",cat:"women",price:8900,img:"https://images.unsplash.com/photo-1577900232427-18219b9166a0?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Wool Long Coat",cat:"women",price:21900,img:"https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Satin Blazer",cat:"women",price:14500,img:"https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Heritage Cardigan",cat:"women",price:10900,img:"https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Boys Polo",cat:"kids",price:3900,img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Girls Classic Dress",cat:"kids",price:5600,img:"https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Kids Linen Shirt",cat:"kids",price:4200,img:"https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Kids Heritage Sweater",cat:"kids",price:4900,img:"https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Kids Chino Set",cat:"kids",price:5900,img:"https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Kids Party Dress",cat:"kids",price:6900,img:"https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Junior Blazer",cat:"kids",price:8900,img:"https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Kids Cotton Kurta",cat:"kids",price:4500,img:"https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Kids Summer Set",cat:"kids",price:5200,img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Kids Formal Shirt",cat:"kids",price:4400,img:"https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Heritage Leather Bag",cat:"bags",price:14500,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",tag:"ICON"},
+{name:"SNC Structured Handbag",cat:"bags",price:15500,img:"https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Executive Briefcase",cat:"bags",price:18900,img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Leather Crossbody",cat:"bags",price:11900,img:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Travel Weekender",cat:"bags",price:17500,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Heritage Tote",cat:"bags",price:13900,img:"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Mini Shoulder Bag",cat:"bags",price:9900,img:"https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Leather Backpack",cat:"bags",price:16500,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Classic Clutch",cat:"bags",price:8500,img:"https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Premium Laptop Bag",cat:"bags",price:15900,img:"https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Loafer",cat:"shoes",price:12500,img:"https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Chelsea Boot",cat:"shoes",price:15900,img:"https://images.unsplash.com/photo-1638247025967-b4e38f787b76?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Oxford Formal Shoe",cat:"shoes",price:13900,img:"https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&w=900&q=85",tag:"BESTSELLER"},
+{name:"SNC Penny Loafer",cat:"shoes",price:12900,img:"https://images.unsplash.com/photo-1533867617858-e7b97f060509?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Suede Derby",cat:"shoes",price:14900,img:"https://images.unsplash.com/photo-1605812860427-4024433a70fd?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Leather Sneaker",cat:"shoes",price:10900,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Heels",cat:"shoes",price:11900,img:"https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Women's Loafer",cat:"shoes",price:11500,img:"https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Heritage Sandal",cat:"shoes",price:7900,img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Formal Monk Shoe",cat:"shoes",price:14500,img:"https://images.unsplash.com/photo-1595341888016-a392ef81b7de?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC No. 01 Fragrance",cat:"fragrance",price:8500,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",tag:"BESTSELLER"},
+{name:"SNC Oud Royale",cat:"fragrance",price:12500,img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Imperial Oud Attar",cat:"fragrance",price:7500,img:"https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Amber Noir",cat:"fragrance",price:9900,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Royal Musk",cat:"fragrance",price:7900,img:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Sandalwood Reserve",cat:"fragrance",price:10900,img:"https://images.unsplash.com/photo-1619994403073-2f6f9b7f2f66?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Rose Oud",cat:"fragrance",price:8900,img:"https://images.unsplash.com/photo-1563170351-be82bc888aa4?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC White Musk Attar",cat:"fragrance",price:6500,img:"https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Leather Intense",cat:"fragrance",price:11500,img:"https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Signature Gift Set",cat:"fragrance",price:18900,img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85",tag:"GIFT"},
+{name:"SNC Heritage Watch",cat:"accessories",price:18500,img:"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=85",tag:"ICON"},
+{name:"SNC Leather Belt",cat:"accessories",price:4200,img:"https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Heritage Wallet",cat:"accessories",price:5200,img:"https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Classic Sunglasses",cat:"accessories",price:4800,img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Silk Pocket Square",cat:"accessories",price:2900,img:"https://images.unsplash.com/photo-1589756823695-278bc923f962?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Premium Tie",cat:"accessories",price:3500,img:"https://images.unsplash.com/photo-1589756823695-278bc923f962?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Cufflink Set",cat:"accessories",price:5900,img:"https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=85",tag:"SIGNATURE"},
+{name:"SNC Leather Card Holder",cat:"accessories",price:3900,img:"https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=85"},
+{name:"SNC Premium Bracelet",cat:"accessories",price:6900,img:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85",tag:"NEW"},
+{name:"SNC Classic Cap",cat:"accessories",price:3200,img:"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=85"}
+];
+let current="all",cart=[];
+const money=n=>"Rs "+n.toLocaleString("en-PK");
+function render(list=products.slice(0,12)){document.getElementById("productCount").textContent=list.length+" premium pieces";
+ const el=document.getElementById("products");
+ el.innerHTML=list.map((p,i)=>`<article class="card"><div class="cardimg" style="background-image:url('${p.img}')" onerror="this.style.backgroundImage='linear-gradient(135deg,#eee,#d8d0c2)'">${p.tag?`<span class="cardtag">${p.tag}</span>`:""}<button class="heart" onclick="wishlist(this)">♡</button></div><div class="cardbody"><h3>${p.name}</h3><div class="meta">Premium quality · ${p.cat.toUpperCase()}</div><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${products.indexOf(p)})">ADD TO BAG</button></div></article>`).join("");
+}
+function filter(cat){current=cat;document.getElementById("shopTitle").textContent=cat==="fragrance"?"FRAGRANCE & ATTARS":cat.toUpperCase();const list=products.filter(p=>p.cat===cat);render(list);scrollToId("shop")}
+function showAll(){current="all";document.getElementById("shopTitle").textContent="NEW ARRIVALS";render(products);scrollToId("shop")}
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:"smooth"})}
+function wishlist(btn){btn.textContent=btn.textContent==="♡"?"♥":"♡";btn.style.color=btn.textContent==="♥"?"#b18a48":""}
+function addToCart(i){cart.push(products[i]);updateCart();openCart()}
+function updateCart(){document.getElementById("cartBadge").textContent=cart.length;document.getElementById("cartItems").innerHTML=cart.length?cart.map((p,i)=>`<div class="cartitem"><img src="${p.img}"><div><b>${p.name}</b><br><small>${money(p.price)}</small><br><button onclick="removeItem(${i})">Remove</button></div></div>`).join(""):"<p>Your bag is empty.</p>";document.getElementById("cartTotal").textContent="Total: "+money(cart.reduce((a,p)=>a+p.price,0))}
+function removeItem(i){cart.splice(i,1);updateCart()}
+function openCart(){document.getElementById("cart").classList.add("open")}
+function closeCart(){document.getElementById("cart").classList.remove("open")}
+function checkout(){if(!cart.length)return alert("Your bag is empty.");alert("Checkout ready. Connect your payment gateway and order backend for live orders.")}
+function searchProducts(){const q=prompt("Search SNC products");if(!q)return;const list=products.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.cat.toLowerCase().includes(q.toLowerCase()));document.getElementById("shopTitle").textContent="SEARCH RESULTS";render(list);scrollToId("shop")}
+render();
+
+function toggleMenu(){
+  const menu=document.querySelector(".navlinks");
+  if(menu) menu.classList.toggle("mobile-open");
+}
+document.querySelectorAll(".navlinks button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelector(".navlinks")?.classList.remove("mobile-open");
+  });
+});
+
+</script>
+</body>
+</html>
